@@ -43,6 +43,7 @@ const tokenKey = "onboardai_token";
 
 const authCard = document.getElementById("auth-card");
 const appCard = document.getElementById("app-card");
+const topSignoutBtn = document.getElementById("top-signout");
 const authMessage = document.getElementById("auth-message");
 const userName = document.getElementById("user-name");
 const userRole = document.getElementById("user-role");
@@ -74,6 +75,7 @@ let employees = [];
 function setAuthView(showApp) {
   authCard.classList.toggle("hidden", showApp);
   appCard.classList.toggle("hidden", !showApp);
+  topSignoutBtn.classList.toggle("hidden", !showApp);
 }
 
 function showMessage(message = "") {
@@ -384,7 +386,7 @@ askBtn.addEventListener("click", async () => {
   if (!question) return;
 
   askBtn.disabled = true;
-  askBtn.textContent = "Thinking...";
+  askBtn.textContent = "…";
 
   try {
     const data = await api("/api/ask", {
@@ -401,7 +403,7 @@ askBtn.addEventListener("click", async () => {
     answerBox.classList.remove("hidden");
   } finally {
     askBtn.disabled = false;
-    askBtn.textContent = "Get answer";
+    askBtn.textContent = "▶";
   }
 });
 
@@ -412,7 +414,7 @@ questionInput.addEventListener("keydown", (event) => {
   }
 });
 
-document.getElementById("logout").addEventListener("click", () => {
+function signOut() {
   localStorage.removeItem(tokenKey);
   answerBox.classList.add("hidden");
   questionInput.value = "";
@@ -424,7 +426,10 @@ document.getElementById("logout").addEventListener("click", () => {
   employeePicker.innerHTML = "";
   showHrStatus("");
   setAuthView(false);
-});
+}
+
+document.getElementById("logout").addEventListener("click", signOut);
+topSignoutBtn.addEventListener("click", signOut);
 
 employeePicker.addEventListener("change", () => {
   renderEmployeeSourceChecklist();
