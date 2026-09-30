@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>OnboardAI</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <main class="container">
+      <header class="topbar">
+        <div class="brand">
+          <span class="brand-icon">✶</span>
+          <span class="brand-text">onboardai.</span>
+        </div>
+        <div class="topbar-right">
+          <span class="demo-pill">● Fictional demo</span>
+          <span class="avatar">J</span>
+        </div>
+      </header>
+
+      <p class="crumbs">YOUR WORKSPACE <span>/</span> OVERVIEW</p>
+
+      <section id="auth-card" class="card auth-card">
+        <div class="demo-accounts">
+          <h3>Demo test accounts</h3>
+          <p><strong>HR:</strong> hr.demo@onboardai.local / DemoHR123!</p>
+          <p><strong>Employee:</strong> employee.demo@onboardai.local / DemoEmp123!</p>
+        </div>
+
+        <div class="tabs">
+          <button id="tab-signin" class="tab active">Sign in</button>
+          <button id="tab-signup" class="tab">Sign up</button>
+        </div>
+
+        <form id="signin-form" class="form">
+          <label>Email <input type="email" name="email" required /></label>
+          <label>Password <input type="password" name="password" required /></label>
+          <button type="submit">Sign in</button>
+        </form>
+
+        <form id="signup-form" class="form hidden">
+          <label>Name <input type="text" name="name" required /></label>
+          <label>Email <input type="email" name="email" required /></label>
+          <label>Password <input type="password" name="password" minlength="8" required /></label>
+          <button type="submit">Create account</button>
+        </form>
+
+        <p id="auth-message" class="message"></p>
+      </section>
+
+      <section id="app-card" class="hidden">
+        <section class="hero-card card">
+          <div class="hero-copy">
+            <p class="section-label">— YOUR ONBOARDING SPACE</p>
+            <h1>Good to have you here, <span id="user-name"></span>.</h1>
+            <p class="hero-sub">Your first steps, all in one place. Take it one thing at a time.</p>
+            <div class="hero-chip-row">
+              <span class="hero-chip">Customer Support</span>
+              <span class="hero-chip muted">Day 1 of your journey</span>
+            </div>
+          </div>
+          <div class="hero-mark" aria-hidden="true">✶</div>
+        </section>
+
+        <div class="grid-2">
+          <section class="card plan-card">
+            <div class="mini-head">
+              <p class="section-label">01 / YOUR PLAN</p>
+              <button type="button" class="mini-btn">☰</button>
+            </div>
+            <h2>The next steps</h2>
+            <p class="muted-text">Small steps, meaningful progress.</p>
+
+            <div class="tabs-row">
+              <span class="tab-chip active">Day 1</span>
+              <span class="tab-chip">Week 1</span>
+              <span class="tab-chip">First 30 Days</span>
+            </div>
+
+            <div class="checklist-head">
+              <span>DAY 1 CHECKLIST</span>
+              <strong>0 of 3 complete</strong>
+            </div>
+
+            <ul class="checklist">
+              <li><span class="checkbox"></span><div><h4>Join the team welcome</h4><p>Check in with support and join the welcome call.</p></div><span class="pill-time">9:00 a.m.</span></li>
+              <li><span class="checkbox"></span><div><h4>Set up your sample laptop</h4><p>Sign in from the welcome email and enable multi-factor authentication.</p></div><span class="pill-time">45 min</span></li>
+              <li><span class="checkbox"></span><div><h4>Meet your mentor</h4><p>Walk through the sample inbox and ask about your first week.</p></div><span class="pill-time">30 min</span></li>
+            </ul>
+          </section>
+
+          <section class="card ask-card">
+            <div class="mini-head">
+              <p class="section-label">02 / FIND AN ANSWER</p>
+              <span class="mini-spark">✶</span>
+            </div>
+            <h2>Ask about work.</h2>
+            <p class="muted-text">Answers grounded in sample onboarding guides.</p>
+
+            <div class="toolbar">
+              <p class="identity">
+                Signed in as <strong id="user-role"></strong>
+                <span id="role-badge" class="badge"></span>
+              </p>
+              <button id="logout">Log out</button>
+            </div>
+
+            <p id="source-visibility-summary" class="subtle"></p>
+
+            <div class="question-area">
+              <label for="question">YOUR QUESTION</label>
+              <div class="ask-input-row">
+                <input id="question" placeholder="e.g. How do I request time off?" />
+                <button id="ask-btn" class="ask-send" aria-label="Ask">↗</button>
+              </div>
+              <div class="ask-helper">
+                <span>● Grounded in sample guides</span>
+                <span>Press enter to ask</span>
+              </div>
+            </div>
+
+            <article id="answer-box" class="answer hidden">
+              <h3>Answer</h3>
+              <p id="answer-text"></p>
+              <div id="sources"></div>
+            </article>
+
+            <details>
+              <summary>Suggested questions</summary>
+              <div id="sample-questions"></div>
+            </details>
+          </section>
+        </div>
+
+        <section id="hr-panel" class="card nested hidden">
+          <h3>Need admin control? HR source access</h3>
+          <p>Define exactly which source guides each employee account can access.</p>
+          <label>
+            Employee account
+            <select id="employee-picker"></select>
+          </label>
+
+          <div id="employee-source-list" class="guide-checklist"></div>
+          <button id="save-employee-sources" type="button">Save source access</button>
+          <p id="hr-status" class="message"></p>
+        </section>
+      </section>
+
+      <footer class="footnote">ONBOARDAI / A CONCEPT EXPERIENCE</footer>
+    </main>
+
+    <script src="/app.js"></script>
+  </body>
+</html>
