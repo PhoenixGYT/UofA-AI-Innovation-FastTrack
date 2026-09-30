@@ -184,7 +184,7 @@ app.patch("/api/hr/employees/:employeeId/sources", authMiddleware, requireHr, as
 app.post("/api/ask", authMiddleware, async (req, res) => {
   const { question } = req.body || {};
   const visiblePassages = getVisiblePassagesForUser(req.user);
-  const result = answerQuestion(question, visiblePassages);
+  const result = await answerQuestion(question, visiblePassages);
 
   await db.insertQuestionLog({
     userId: req.user.id,
